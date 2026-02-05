@@ -46,7 +46,10 @@ namespace SAS.TweenManagement
         public static ITween CubicBezier(Transform tweenObject, Vector3 from, Vector3 to, Vector3 cp1, Vector3 cp2, float duration, OnAnimationCompleteCallback callback)
         {
             TweenConfig tweenConfig = new TweenConfig().Duration(duration).TweenCompleteCallback(callback);
-            ITween iTween = CreateTween(0, 1, (value) => { tweenObject.SetPosition(from, to, cp1, cp2, value); }, ref tweenConfig);
+            ITween iTween = CreateTween(0, 1, (value) => {
+                if(tweenObject != null)
+                    tweenObject.SetPosition(from, to, cp1, cp2, value); 
+                }, ref tweenConfig);
             iTween.Run();
             return iTween;
         }
@@ -59,7 +62,10 @@ namespace SAS.TweenManagement
         public static ITween CubicBezier(Transform tweenObject, Vector2 from, Vector2 to, Vector2 cp1, Vector2 cp2, float duration, OnAnimationCompleteCallback callback)
         {
             TweenConfig tweenConfig = new TweenConfig().Duration(duration).TweenCompleteCallback(callback);
-            ITween iTween = CreateTween(0, 1, (value) => { tweenObject.SetPosition(from, to, cp1, cp2, value); }, ref tweenConfig);
+            ITween iTween = CreateTween(0, 1, (value) => {
+                if(tweenObject != null)
+                    tweenObject.SetPosition(from, to, cp1, cp2, value);
+                }, ref tweenConfig);
             iTween.Run();
             return iTween;
         }
@@ -72,7 +78,10 @@ namespace SAS.TweenManagement
         public static ITween QuadraticBezier(Transform tweenObject, Vector3 from, Vector3 to, Vector3 controlPoint, float duration, OnAnimationCompleteCallback callback)
         {
             TweenConfig tweenConfig = new TweenConfig().Duration(duration).TweenCompleteCallback(callback);
-            ITween iTween = CreateTween(0, 1, (value) => { tweenObject.SetPosition(from, to, controlPoint, value); }, ref tweenConfig);
+            ITween iTween = CreateTween(0, 1, (value) => {
+                if(tweenObject != null)
+                    tweenObject.SetPosition(from, to, controlPoint, value);
+                }, ref tweenConfig);
             iTween.Run();
             return iTween;
         }
@@ -85,7 +94,10 @@ namespace SAS.TweenManagement
         public static ITween QuadraticBezier(Transform tweenObject, Vector2 from, Vector2 to, Vector2 controlPoint, float duration, OnAnimationCompleteCallback callback)
         {
             TweenConfig tweenConfig = new TweenConfig().Duration(duration).TweenCompleteCallback(callback);
-            ITween iTween = CreateTween(0, 1, (value) => { tweenObject.SetPosition(from, to, controlPoint, value); }, ref tweenConfig);
+            ITween iTween = CreateTween(0, 1, (value) => {
+                if(tweenObject != null)
+                    tweenObject.SetPosition(from, to, controlPoint, value);
+                }, ref tweenConfig);
             iTween.Run();
             return iTween;
         }
@@ -94,7 +106,10 @@ namespace SAS.TweenManagement
         {
             tweenConfig.Delta = GetDeltaMove(0, 360, tweenConfig.DurationOrSpeed, tweenConfig.IsTimeBased);
             var position = tweenObject.transform.localPosition;
-            ITween iTween = new FloatTween(0, 360, (value) => { tweenObject.SetRadialPosition(position, radius, value); });
+            ITween iTween = new FloatTween(0, 360, (value) => {
+                if(tweenObject != null)
+                    tweenObject.SetRadialPosition(position, radius, value);
+                });
             TweenRunner.Add(iTween, tweenConfig);
             return iTween;
         }
